@@ -21,35 +21,6 @@ namespace WebProvisioningTemplate.Console
             return value;
         }
 
-        public static object GetEnumValue(string label, Type enumType)
-        {
-            System.Console.WriteLine(label);
-            var names = Enum.GetNames(enumType);
-
-            for (int i = 0; i < names.Length; i++)
-                System.Console.WriteLine($"{i + 1}:\t{names[i]}");
-            System.Console.Write("> ");
-
-            while (true)
-            {
-                var keyInfo = System.Console.ReadKey(true);
-                int index = keyInfo.KeyChar - '1';
-
-                if (index >= names.Length || index < 0)
-                {
-                    System.Console.WriteLine("Invalid key. Try again:\r\n> ");
-                    continue;
-                }
-
-                var result = Enum.Parse(enumType, names[index]);
-
-                System.Console.WriteLine(result);
-                System.Console.WriteLine();
-
-                return result;
-            }
-        }
-
         public static string GetPassword(string label = null)
         {
             if (!string.IsNullOrWhiteSpace(label))
